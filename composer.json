@@ -1,0 +1,21 @@
+{
+    "name": "udamuri/yii2-curl",
+    "description": "YII2 CURL",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","curl"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muri Budiman",
+            "email": "udamuri@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "udamuri\\curl\\": ""
+        }
+    }
+}
