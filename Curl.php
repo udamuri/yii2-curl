@@ -18,7 +18,7 @@ class Curl extends \yii\base\Widget
     public $error_code;             
     public $error_string;           
     public $info;    
-    public                
+    public $widgetInput = [];              
 
 
     public function run()
@@ -35,7 +35,6 @@ class Curl extends \yii\base\Widget
  
     public function __call($method, $arguments) {
         if (in_array($method, array('simple_get', 'simple_post', 'simple_put', 'simple_delete'))) {
-            // ambil data kemudian di memanggil fungsi dari _simple_call
             $verb = str_replace('simple_', '', $method);
             array_unshift($arguments, $verb);
             return call_user_func_array(array($this, '_simple_call'), $arguments);
@@ -43,30 +42,23 @@ class Curl extends \yii\base\Widget
     }
 
     public function _simple_call($method, $url, $params = array(), $options = array()) {
-        // Get acts differently, as it doesnt accept parameters in the same way
         if ($method === 'get') {
-            //hanya get saja
             $this->create($url . ($params ? '?' . http_build_query($params, NULL, '&') : ''));
         } else {
-            // buat sessi baru
             $this->create($url);
 
             $this->{$method}($params);
         }
 
-        // tambah ke option
         $this->options($options);
-        //eksekusi
         return $this->execute();
     }
 
     public function post($params = array(), $options = array()) {
-        //http_build_query jika bukan array
         if (is_array($params)) {
             $params = http_build_query($params);
         }
 
-        // tambahin option jika ada
         $this->options($options);
 
         $this->http_method('post');
@@ -76,28 +68,23 @@ class Curl extends \yii\base\Widget
     }
 
     public function put($params = array(), $options = array()) {
-        //http_build_query jika bukan array
         if (is_array($params)) {
             $params = http_build_query($params, NULL, '&');
         }
 
-        // tambahin option jika ada
         $this->options($options);
 
         $this->http_method('put');
         $this->option(CURLOPT_POSTFIELDS, $params);
 
-        // Mengganti data header POST menjadi PUT
         $this->option(CURLOPT_HTTPHEADER, array('X-HTTP-Method-Override: PUT'));
     }
 
     public function delete($params, $options = array()) {
-        //http_build_query jika bukan array
         if (is_array($params)) {
             $params = http_build_query($params, NULL, '&');
         }
 
-        // tambahin option jika ada
         $this->options($options);
 
         $this->http_method('delete');
@@ -118,10 +105,6 @@ class Curl extends \yii\base\Widget
         $this->headers[] = $content ? $header . ': ' . $content : $header;
     }
 
-    /**
-     * Untuk Menset custom Method selain post put delete dan get
-     * @param String $method Nama Method yang di inginkan
-     */
     public function http_method($method) {
         $this->options[CURLOPT_CUSTOMREQUEST] = strtoupper($method);
         return $this;
@@ -156,12 +139,10 @@ class Curl extends \yii\base\Widget
     }
 
     public function options($options = array()) {
-        // Merge options in with the rest - done as array_merge() does not overwrite numeric keys
         foreach ($options as $option_code => $option_value) {
             $this->option($option_code, $option_value);
         }
 
-        // Set all options provided
         curl_setopt_array($this->session, $this->options);
 
         return $this;
@@ -195,7 +176,6 @@ class Curl extends \yii\base\Widget
         }
 
         if (!ini_get('safe_mode') && !ini_get('open_basedir')) {
-            // Ok, follow location is not set already so lets set it to true
             if (!isset($this->options[CURLOPT_FOLLOWLOCATION])) {
                 $this->options[CURLOPT_FOLLOWLOCATION] = TRUE;
             }
