@@ -2,6 +2,7 @@ YII2 CURL
 =========
 YII2 CURL using Library codeigniter by
 - http://philsturgeon.co.uk/code/codeigniter-curl
+- https://github.com/philsturgeon/codeigniter-curl/blob/master/libraries/Curl.php
 
 Installation
 ------------
