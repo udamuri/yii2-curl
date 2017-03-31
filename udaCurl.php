@@ -7,7 +7,7 @@ namespace udamuri\curl;
  * @link    http://muribudiman.wordpress.com
  */
 
-class udaCurl extends \yii\base\Widget
+class UdaCurl extends \yii\base\Widget
 {
 
     public function run()
