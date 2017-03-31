@@ -23,11 +23,19 @@ class YiiCurl extends \yii\base\Widget
 
     public function run()
     {
+    	if( is_array($this->http_login) )
+    	{
+    		if(count($this->http_login) == 2)
+    		{
+    			$this->myhttp_login($this->http_login[0], $this->http_login[1]);
+    		}
+    	}
+
     	if($this->call === 'simple_get')
     	{
     		return $this->simple_get();
     	}
-    	
+
 		return null;
     }
 
@@ -37,23 +45,20 @@ class YiiCurl extends \yii\base\Widget
     	$data_package = '';
     	if($this->url !== "")
     	{
-	    	if( is_array($this->http_login) )
-	    	{
-	    		if(count($this->http_login) == 2)
-	    		{
-	    			$curl->http_login(''.$this->http_login[0].'', ''.''.$this->http_login[1].''.'');
-	    		}
-	    	}
-
-	    	$data_package = $curl->simple_get(''.$this->url.'');
+	    	$data_package = $this->curl->simple_get(''.$this->url.'');
     	}
 
-    	$arrData = [
-			'data' => $data_package,
-			'debug' => $curl->debug()
-		];
+  		// $arrData = [
+		// 	'data' => $data_package,
+		// 	'debug' => $curl->debug()
+		// ];
 
-		return $arrData;
+		return $data_package;
+    }
+
+    private function myhttp_login($_user="", $_password="")
+    {
+    	$this->curl->http_login(''.$_user.'', ''.''.$_password.''.'');
     }
 
 
