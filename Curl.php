@@ -280,24 +280,25 @@ class curl {
     }
 
     public function debug() {
-        echo "=============================================<br/>\n";
-        echo "<h2>CURL Test</h2>\n";
-        echo "=============================================<br/>\n";
-        echo "<h3>Response</h3>\n";
-        echo "<code>" . nl2br(htmlentities($this->last_response)) . "</code><br/>\n\n";
+        $debug = "";
+        $debug .= "=============================================<br/>\n";
+        $debug .= "<h2>CURL Test</h2>\n";
+        $debug .= "=============================================<br/>\n";
+        $debug .= "<h3>Response</h3>\n";
+        $debug .= "<code>" . nl2br(htmlentities($this->last_response)) . "</code><br/>\n\n";
 
         if ($this->error_string) {
-            echo "=============================================<br/>\n";
-            echo "<h3>Errors</h3>";
-            echo "<strong>Code:</strong> " . $this->error_code . "<br/>\n";
-            echo "<strong>Message:</strong> " . $this->error_string . "<br/>\n";
+            $debug .= "=============================================<br/>\n";
+            $debug .= "<h3>Errors</h3>";
+            $debug .= "<strong>Code:</strong> " . $this->error_code . "<br/>\n";
+            $debug .= "<strong>Message:</strong> " . $this->error_string . "<br/>\n";
         }
 
-        echo "=============================================<br/>\n";
-        echo "<h3>Info</h3>";
-        echo "<pre>";
-        print_r($this->info);
-        echo "</pre>";
+        $debug .= "=============================================<br/>\n";
+        $debug .= "<h3>Info</h3>";
+        $debug .= "<pre>";
+        //print_r($this->info);
+        $debug .= "</pre>";
     }
 
     public function debug_request() {
