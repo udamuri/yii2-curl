@@ -47,18 +47,13 @@ class YiiCurl extends \yii\base\Widget
     	{
 	    	$data_package = $this->curl->simple_get(''.$this->url.'');
     	}
-
-  		// $arrData = [
-		// 	'data' => $data_package,
-		// 	'debug' => $curl->debug()
-		// ];
-
+    	
 		return $data_package;
     }
 
     private function myhttp_login($_user="", $_password="")
     {
-    	$this->curl->http_login(''.$_user.'', ''.''.$_password.''.'');
+    	$this->curl->http_login($_user, $_password);
     }
 
 
