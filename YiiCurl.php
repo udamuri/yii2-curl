@@ -14,7 +14,8 @@ class YiiCurl extends \yii\base\Widget
 
 	public $setMethod = "get" ;
     public $setAuth = [] ;
-	public $setBody = [] ;
+    public $setBody = [] ;
+	public $setOptions = [] ;
 	public $setUrl = "" ;
 
     public function __construct( /*...*/ ) {
@@ -71,9 +72,9 @@ class YiiCurl extends \yii\base\Widget
     {
         $curl = $this->curl;
         $data_package = '';
-        if($this->setUrl !== "" && is_array($this->setBody))
+        if($this->setUrl !== "" && is_array($this->setBody) && is_array($this->setOptions) )
         {
-            $data_package = $this->curl->simple_post(''.$this->setUrl.'', $this->setBody);
+            $data_package = $this->curl->simple_post($this->setUrl, $this->setBody, $this->setOptions);
         }
 
         return $data_package;
@@ -83,9 +84,9 @@ class YiiCurl extends \yii\base\Widget
     {
         $curl = $this->curl;
         $data_package = '';
-        if($this->setUrl !== "" && is_array($this->setBody))
+        if($this->setUrl !== "" && is_array($this->setBody) && is_array($this->setOptions) )
         {
-            $data_package = $this->curl->simple_put(''.$this->setUrl.'', $this->setBody);
+            $data_package = $this->curl->simple_put($this->setUrl, $this->setBody, $this->setOptions);
         }
 
         return $data_package;
@@ -95,9 +96,9 @@ class YiiCurl extends \yii\base\Widget
     {
         $curl = $this->curl;
         $data_package = '';
-        if($this->setUrl !== "" && is_array($this->setBody))
+        if($this->setUrl !== "" && is_array($this->setBody) && is_array($this->setOptions) )
         {
-            $data_package = $this->curl->simple_delete(''.$this->setUrl.'', $this->setBody);
+            $data_package = $this->curl->simple_delete($this->setUrl, $this->setBody, $this->setOptions);
         }
 
         return $data_package;
