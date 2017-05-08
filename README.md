@@ -40,24 +40,24 @@ $tes = \udamuri\curl\YiiCurl::widget([
 //POST
 $body = [
             [
-                "name" => "Pande",
-                "email" => "pande@gmail.com",
-                "blog" => "pande.wordpress.com",
-                "company" => "Mindo",
+                "name" => "Tes",
+                "email" => "tes@gmail.com",
+                "blog" => "tes.xx.com",
+                "company" => "Gite",
                 "bio" => "Lorem Ipsum Dolor SIt Amet"
             ],
             [
-                "name" => "Sirait",
-                "email" => "sirait@gmail.com",
-                "blog" => "sirait.wordpress.com",
-                "company" => "Mindo",
+                "name" => "Tos",
+                "email" => "tos@gmail.com",
+                "blog" => "tos.xx.com",
+                "company" => "Gite",
                 "bio" => "Lorem Ipsum Dolor SIt Amet"
             ]
         ];
 
 $tes = \udamuri\curl\YiiCurl::widget([
     'setMethod' => 'post',
-    'setAuth' => ['muribudiman', '123456789'],
+    'setAuth' => ['user', 'password'],
     'setBody' => $body,
-    'setUrl'=>'http://ladoapi.dev:1984/example/create'
+    'setUrl'=>'http://ladoapi.dev/example/create'
 ]);```
