@@ -30,13 +30,14 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
+//GET
 $tes = \udamuri\curl\YiiCurl::widget([
     'setMethod' => 'get',
     'setAuth' => ['user', 'password'],
     'setUrl'=>'http://website.com/api/100'
-]);```
+]);
 
-```php
+//POST
 $body = [
             [
                 "name" => "Pande",
@@ -59,5 +60,4 @@ $tes = \udamuri\curl\YiiCurl::widget([
     'setAuth' => ['muribudiman', '123456789'],
     'setBody' => $body,
     'setUrl'=>'http://ladoapi.dev:1984/example/create'
-]);
-```
+]);```
