@@ -12,9 +12,9 @@ class YiiCurl extends \yii\base\Widget
 
 	protected $curl;
 
-	public $call = "" ;
-	public $http_login = "" ;
-	public $url = "" ;
+	public $setMethod = "get" ;
+	public $setAuth = [] ;
+	public $setUrl = "" ;
 
     public function __construct( /*...*/ ) {
         require_once( dirname(__FILE__) . '/curl.php');
@@ -23,15 +23,15 @@ class YiiCurl extends \yii\base\Widget
 
     public function run()
     {
-    	if( is_array($this->http_login) )
+    	if( is_array($this->setAuth) )
     	{
-    		if(count($this->http_login) == 2)
+    		if(count($this->setAuth) == 2)
     		{
-    			$this->myhttp_login($this->http_login[0], $this->http_login[1]);
+    			$this->myhttp_login($this->setAuth[0], $this->setAuth[1]);
     		}
     	}
 
-    	if($this->call === 'simple_get')
+    	if($this->setMethod === 'get')
     	{
     		return $this->simple_get();
     	}
@@ -43,9 +43,9 @@ class YiiCurl extends \yii\base\Widget
     {
     	$curl = $this->curl;
     	$data_package = '';
-    	if($this->url !== "")
+    	if($this->setUrl !== "")
     	{
-	    	$data_package = $this->curl->simple_get(''.$this->url.'');
+	    	$data_package = $this->curl->simple_get(''.$this->setUrl.'');
     	}
     	
 		return $data_package;
