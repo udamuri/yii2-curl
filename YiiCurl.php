@@ -42,6 +42,16 @@ class YiiCurl extends \yii\base\Widget
             return $this->post();
         }
 
+        if($this->setMethod === 'post')
+        {
+            return $this->put();
+        }
+
+        if($this->setMethod === 'delete')
+        {
+            return $this->delete();
+        }
+
 		return null;
     }
 
@@ -64,6 +74,30 @@ class YiiCurl extends \yii\base\Widget
         if($this->setUrl !== "" && is_array($this->setBody))
         {
             $data_package = $this->curl->simple_post(''.$this->setUrl.'', $this->setBody);
+        }
+
+        return $data_package;
+    }
+
+    private function put()
+    {
+        $curl = $this->curl;
+        $data_package = '';
+        if($this->setUrl !== "" && is_array($this->setBody))
+        {
+            $data_package = $this->curl->simple_put(''.$this->setUrl.'', $this->setBody);
+        }
+
+        return $data_package;
+    }
+
+    private function delete()
+    {
+        $curl = $this->curl;
+        $data_package = '';
+        if($this->setUrl !== "" && is_array($this->setBody))
+        {
+            $data_package = $this->curl->simple_delete(''.$this->setUrl.'', $this->setBody);
         }
 
         return $data_package;
