@@ -35,3 +35,29 @@ $tes = \udamuri\curl\YiiCurl::widget([
     'setAuth' => ['user', 'password'],
     'setUrl'=>'http://website.com/api/100'
 ]);```
+
+```php
+$body = [
+            [
+                "name" => "Pande",
+                "email" => "pande@gmail.com",
+                "blog" => "pande.wordpress.com",
+                "company" => "Mindo",
+                "bio" => "Lorem Ipsum Dolor SIt Amet"
+            ],
+            [
+                "name" => "Sirait",
+                "email" => "sirait@gmail.com",
+                "blog" => "sirait.wordpress.com",
+                "company" => "Mindo",
+                "bio" => "Lorem Ipsum Dolor SIt Amet"
+            ]
+        ];
+
+$tes = \udamuri\curl\YiiCurl::widget([
+    'setMethod' => 'post',
+    'setAuth' => ['muribudiman', '123456789'],
+    'setBody' => $body,
+    'setUrl'=>'http://ladoapi.dev:1984/example/create'
+]);
+```

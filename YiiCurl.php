@@ -13,7 +13,8 @@ class YiiCurl extends \yii\base\Widget
 	protected $curl;
 
 	public $setMethod = "get" ;
-	public $setAuth = [] ;
+    public $setAuth = [] ;
+	public $setBody = [] ;
 	public $setUrl = "" ;
 
     public function __construct( /*...*/ ) {
@@ -38,7 +39,7 @@ class YiiCurl extends \yii\base\Widget
 
         if($this->setMethod === 'post')
         {
-            
+            return $this->post();
         }
 
 		return null;
@@ -56,15 +57,15 @@ class YiiCurl extends \yii\base\Widget
 		return $data_package;
     }
 
-    private function post($params = [], $options = []))
+    private function post()
     {
         $curl = $this->curl;
         $data_package = '';
-        if($this->setUrl !== "")
+        if($this->setUrl !== "" && is_array($this->setBody))
         {
-            $data_package = $this->curl->post(''.$this->setUrl.'');
+            $data_package = $this->curl->simple_post(''.$this->setUrl.'', $this->setBody);
         }
-        
+
         return $data_package;
     }
 
