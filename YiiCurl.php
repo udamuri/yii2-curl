@@ -36,6 +36,11 @@ class YiiCurl extends \yii\base\Widget
     		return $this->simple_get();
     	}
 
+        if($this->setMethod === 'post')
+        {
+            
+        }
+
 		return null;
     }
 
@@ -49,6 +54,18 @@ class YiiCurl extends \yii\base\Widget
     	}
     	
 		return $data_package;
+    }
+
+    private function post($params = [], $options = []))
+    {
+        $curl = $this->curl;
+        $data_package = '';
+        if($this->setUrl !== "")
+        {
+            $data_package = $this->curl->post(''.$this->setUrl.'');
+        }
+        
+        return $data_package;
     }
 
     private function myhttp_login($_user="", $_password="")

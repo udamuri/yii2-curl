@@ -31,7 +31,7 @@ Once the extension is installed, simply use it in your code by  :
 
 ```php
 $tes = \udamuri\curl\YiiCurl::widget([
-    'call' => 'simple_get',
-    'http_login' => ['user', 'password'],
-    'url'=>'http://website.com/api/100'
+    'setMethod' => 'get',
+    'setAuth' => ['user', 'password'],
+    'setUrl'=>'http://website.com/api/100'
 ]);```
